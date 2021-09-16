@@ -8,6 +8,7 @@ import { Gallery } from "./Components/Gallery";
 
 export const App = () => {
   const [user, setUser] = useState(null);
+  const history = useHistory();
 
   return (
     <>
