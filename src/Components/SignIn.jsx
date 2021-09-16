@@ -29,7 +29,7 @@ export const SignIn = ({ setUser }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch(
-      `http://localhost:3000/users/?login=${login}&password=${password}`
+      `http://localhost:3033/users/?login=${login}&password=${password}`
     );
     const users = await response.json();
     if (users.length > 0) {
@@ -39,7 +39,7 @@ export const SignIn = ({ setUser }) => {
     }
   };
   const getNewUser = async () => {
-    await fetch("http://localhost:3000/users", {
+    await fetch("http://localhost:3033/users", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ login, password }),
