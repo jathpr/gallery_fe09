@@ -41,7 +41,7 @@ export const App = () => {
             <SignIn setUser={setUser} />
           </Route>
           <Route path="/gallery">
-            <Gallery />
+            <Gallery text={"7"}/>
           </Route>
         </Switch>
       </div>
