@@ -11,6 +11,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { useState } from "react";
+import { createUser, signIn } from "../auth";
 
 const theme = createTheme();
 
@@ -28,22 +29,10 @@ export const SignIn = ({ setUser }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch(
-      `http://localhost:3033/users/?login=${login}&password=${password}`
-    );
-    const users = await response.json();
-    if (users.length > 0) {
-      setUser(users[0]);
-      setLogin("");
-      setPassword("");
-    }
+    signIn(login, password);
   };
   const getNewUser = async () => {
-    await fetch("http://localhost:3033/users", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ login, password }),
-    });
+    createUser(login, password);
   };
 
   return (

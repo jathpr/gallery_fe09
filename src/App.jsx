@@ -5,9 +5,13 @@ import { Breadcrumbs } from "@material-ui/core";
 import { SignIn } from "./Components/SignIn";
 import { Gallery } from "./Components/Gallery";
 import { UserInfoEdit } from "./Components/UserInfoEdit";
+import { listenToUserChange, signOut } from "./auth";
 
 export const App = () => {
   const [user, setUser] = useState(null);
+  useEffect(() => {
+    listenToUserChange();
+  }, []);
 
   return (
     <Router>
@@ -21,14 +25,14 @@ export const App = () => {
           <Link to="/editUser" color="inherit">
             Edit User
           </Link>
-          <button onClick={() => setUser(null)}>Out</button>
+          <button onClick={() => signOut()}>Out</button>
         </Breadcrumbs>
 
         <hr />
 
         <Switch>
           <Route exact path="/">
-            <div>Home</div>
+            <SignIn setUser={setUser} />
           </Route>
           <Route path="/login">
             <SignIn setUser={setUser} />
