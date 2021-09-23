@@ -1,23 +1,13 @@
 import React, { useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useHistory,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import { Breadcrumbs } from "@material-ui/core";
 import { SignIn } from "./Components/SignIn";
 import { Gallery } from "./Components/Gallery";
+import { UserInfoEdit } from "./Components/UserInfoEdit";
 
 export const App = () => {
   const [user, setUser] = useState(null);
-  const history = useHistory();
-
-  useEffect(() => {
-    if (!user) history.push("/login");
-  }, [user]);
 
   return (
     <Router>
@@ -27,6 +17,9 @@ export const App = () => {
 
           <Link to="/gallery" color="inherit">
             GALLERY
+          </Link>
+          <Link to="/editUser" color="inherit">
+            Edit User
           </Link>
           <button onClick={() => setUser(null)}>Out</button>
         </Breadcrumbs>
@@ -42,6 +35,9 @@ export const App = () => {
           </Route>
           <Route path="/gallery">
             <Gallery />
+          </Route>
+          <Route path="/editUser">
+            <UserInfoEdit />
           </Route>
         </Switch>
       </div>
