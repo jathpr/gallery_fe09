@@ -12,10 +12,13 @@ import {
 } from "@material-ui/core";
 import { useState } from "react";
 import { createUser, signIn } from "../auth";
+import { useUser } from "../store/userContext";
 
 const theme = createTheme();
 
 export const SignIn = ({ setUser }) => {
+  const user = useUser();
+  console.log(user);
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
 
@@ -38,6 +41,7 @@ export const SignIn = ({ setUser }) => {
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
+        {user && `user email ${user.email}`}
         <CssBaseline />
         <Box
           sx={{

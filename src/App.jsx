@@ -6,45 +6,43 @@ import { SignIn } from "./Components/SignIn";
 import { Gallery } from "./Components/Gallery";
 import { UserInfoEdit } from "./Components/UserInfoEdit";
 import { listenToUserChange, signOut } from "./auth";
+import { Provider } from "./store/userContext";
 
 export const App = () => {
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    listenToUserChange();
-  }, []);
-
   return (
-    <Router>
-      <div>
-        <Breadcrumbs aria-label="breadcrumb">
-          <Link to="/">HOME</Link>
+    <Provider>
+      <Router>
+        <div>
+          <Breadcrumbs aria-label="breadcrumb">
+            <Link to="/">HOME</Link>
 
-          <Link to="/gallery" color="inherit">
-            GALLERY
-          </Link>
-          <Link to="/editUser" color="inherit">
-            Edit User
-          </Link>
-          <button onClick={() => signOut()}>Out</button>
-        </Breadcrumbs>
+            <Link to="/gallery" color="inherit">
+              GALLERY
+            </Link>
+            <Link to="/editUser" color="inherit">
+              Edit User
+            </Link>
+            <button onClick={() => signOut()}>Out</button>
+          </Breadcrumbs>
 
-        <hr />
+          <hr />
 
-        <Switch>
-          <Route exact path="/">
-            <SignIn setUser={setUser} />
-          </Route>
-          <Route path="/login">
-            <SignIn setUser={setUser} />
-          </Route>
-          <Route path="/gallery">
-            <Gallery />
-          </Route>
-          <Route path="/editUser">
-            <UserInfoEdit />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+          <Switch>
+            <Route exact path="/">
+              <SignIn />
+            </Route>
+            <Route path="/login">
+              <SignIn />
+            </Route>
+            <Route path="/gallery">
+              <Gallery />
+            </Route>
+            <Route path="/editUser">
+              <UserInfoEdit />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </Provider>
   );
 };
