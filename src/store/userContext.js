@@ -2,7 +2,7 @@ import { createContext, useState, useContext } from "react";
 import { listenToUserChange } from "../auth";
 const userContext = createContext();
 
-export const Provider = ({ children }) => {
+export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   listenToUserChange(setUser);
