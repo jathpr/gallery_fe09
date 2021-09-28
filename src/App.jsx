@@ -7,6 +7,7 @@ import { Gallery } from "./Components/Gallery";
 import { UserInfoEdit } from "./Components/UserInfoEdit";
 import { listenToUserChange, signOut } from "./auth";
 import { Provider } from "./store";
+import { AddImage } from "./Components/AddImage";
 
 export const App = () => {
   return (
@@ -18,6 +19,9 @@ export const App = () => {
 
             <Link to="/gallery" color="inherit">
               GALLERY
+            </Link>
+            <Link to="/addImage" color="inherit">
+              ADD IMAGE
             </Link>
             <Link to="/editUser" color="inherit">
               Edit User
@@ -36,6 +40,9 @@ export const App = () => {
             </Route>
             <Route path="/gallery">
               <Gallery />
+            </Route>
+            <Route path="/addImage">
+              <AddImage />
             </Route>
             <Route path="/editUser">
               <UserInfoEdit />
