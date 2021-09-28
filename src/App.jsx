@@ -6,7 +6,7 @@ import { SignIn } from "./Components/SignIn";
 import { Gallery } from "./Components/Gallery";
 import { UserInfoEdit } from "./Components/UserInfoEdit";
 import { listenToUserChange, signOut } from "./auth";
-import { Provider } from "./store/userContext";
+import { Provider } from "./store";
 
 export const App = () => {
   return (

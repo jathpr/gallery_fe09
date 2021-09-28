@@ -1,3 +1,15 @@
+import { ImageList, ImageListItem } from "@material-ui/core";
+import { useImages } from "../store/imageContext";
+
 export const Gallery = () => {
-  return <div>This is your gallery!</div>;
+  const imagesArray = useImages();
+  return (
+    <ImageList cols={2}>
+      {imagesArray.map((item, id) => (
+        <ImageListItem key={id} cols={item.cols || 1}>
+          <img src={item} alt="Image" />
+        </ImageListItem>
+      ))}
+    </ImageList>
+  );
 };
