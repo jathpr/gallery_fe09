@@ -37,10 +37,7 @@ export const SignIn = ({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    signIn(login, password);
-  };
-  const getNewUser = async () => {
-    createUser(login, password);
+    submitBtnHandler(login, password);
   };
 
   return (
@@ -83,7 +80,7 @@ export const SignIn = ({
               fullWidth
               variant="contained"
               color="primary"
-              onClick={submitBtnHandler}
+              onClick={handleSubmit}
               sx={{ mt: 3, mb: 2 }}
             >
               {submitBtnName}

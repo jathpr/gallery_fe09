@@ -15,21 +15,13 @@ import { Provider } from "./store";
 import { AddImage } from "./Components/AddImage";
 import { Login } from "./Components/Login";
 import { Registration } from "./Components/Registration";
+import { Routing } from "./Routing";
 
 export const App = () => {
   return (
     <Provider>
       <Router>
-        <Switch>
-          <Route path="/registration">
-            <Registration />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-
-          <Redirect to="/login" />
-        </Switch>
+        <Routing />
       </Router>
     </Provider>
   );
