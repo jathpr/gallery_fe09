@@ -3,9 +3,6 @@ import { useState, useEffect } from "react";
 export const AddImage = () => {
   const [url, setUrl] = useState();
   const [value, setValue] = useState();
-  useEffect(() => {
-    downloadImage().then(setUrl);
-  }, [downloadImage]);
 
   return (
     <>
