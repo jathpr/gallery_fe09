@@ -4,8 +4,8 @@ import { app } from "./firebase";
 
 const storage = getStorage(app);
 
-export const uploadImage = (file, name) => {
-  const storageRef = ref(storage, `uuid/${name}`);
+export const uploadImage = (file, name, uid) => {
+  const storageRef = ref(storage, `${uid}/${name}`);
   uploadBytes(storageRef, file).then((snapshot) => {
     console.log("Uploaded a blob or file!");
   });
