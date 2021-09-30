@@ -16,7 +16,12 @@ import { useUser } from "../store/userContext";
 
 const theme = createTheme();
 
-export const SignIn = ({ setUser }) => {
+export const SignIn = ({
+  submitBtnName,
+  routeBtnName,
+  submitBtnHandler,
+  routeBtnHandler,
+}) => {
   const user = useUser();
   console.log(user);
   const [login, setLogin] = useState("");
@@ -53,7 +58,7 @@ export const SignIn = ({ setUser }) => {
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            {submitBtnName}
           </Typography>
           <Box component="form" noValidate sx={{ mt: 1 }}>
             <Input
@@ -78,18 +83,18 @@ export const SignIn = ({ setUser }) => {
               fullWidth
               variant="contained"
               color="primary"
-              onClick={handleSubmit}
+              onClick={submitBtnHandler}
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              {submitBtnName}
             </Button>
             <Button
-              onClick={getNewUser}
+              onClick={routeBtnHandler}
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              New User
+              {routeBtnName}
             </Button>
             <Grid container>
               <Grid item></Grid>
