@@ -7,18 +7,8 @@ import { SignIn } from "./SignIn";
 export const Registration = () => {
   const user = useUser();
   console.log(user);
-  const [login, setLogin] = useState("");
-  const [password, setPassword] = useState("");
 
-  const handleInputLog = (e) => {
-    setLogin(e.target.value);
-  };
-
-  const handleInputPass = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const getNewUser = async () => {
+  const getNewUser = async (login, password) => {
     createUser(login, password);
   };
   const history = useHistory();
