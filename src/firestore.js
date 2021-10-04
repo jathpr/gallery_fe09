@@ -10,19 +10,21 @@ import { app } from "./firebase";
 
 const db = getFirestore(app);
 
-export const sendData = async () => {
-  await setDoc(doc(db, "users", "new-city-id"), {
-    first: "Ada",
-    last: "Lovelace",
-    born: 1815,
+export const sendData = async (data, uid) => {
+  await setDoc(doc(db, "users", uid), {
+    ...data,
   });
 };
 
-export const readData = async () => {
+export const readData = async (uid) => {
   const querySnapshot = await getDocs(collection(db, "users"));
+  let user;
   querySnapshot.forEach((doc) => {
-    console.log(`${doc.id} => ${doc.data()}`);
+    if (doc.id === uid) {
+      user = doc.data();
+    }
   });
+  return user;
 };
 
 /*export const sendData = async () => {
