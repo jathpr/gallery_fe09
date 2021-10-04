@@ -23,7 +23,7 @@ export const SignIn = ({
   routeBtnHandler,
 }) => {
   const user = useUser();
-  console.log(user);
+  // console.log(user);
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
 

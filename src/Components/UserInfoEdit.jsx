@@ -14,6 +14,8 @@ import { Autocomplete } from "@material-ui/lab";
 import { useForm } from "react-hook-form";
 import countries from "../countryList";
 import { readData, sendData } from "../firestore";
+import { useUser } from "../store/userContext";
+import { useEffect, useState } from "react";
 
 const theme = createTheme();
 
@@ -23,14 +25,23 @@ const countriesList = {
 };
 
 export const UserInfoEdit = () => {
+  const user = useUser();
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => sendData(data, user.uid);
+  const [name, setName] = useState("");
+  const [birthday, setBirthday] = useState("");
+  useEffect(() => {
+    const userData = readData(user.uid);
+    userData.then((response) => {
+      setName(response.name);
+      setBirthday(response.birthday);
+    });
+  }, []);
 
+  console.log(name);
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-        <button onClick={sendData}>Send Data</button>
-        <button onClick={readData}>Read Data</button>
         <h1>Edit information</h1>
         <FormControl onSubmit={handleSubmit(onSubmit)} fullWidth>
           <FormLabel>Gender</FormLabel>
@@ -66,6 +77,10 @@ export const UserInfoEdit = () => {
             label="Name"
             type="text"
             margin="normal"
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
           />
 
           <TextField
@@ -73,11 +88,15 @@ export const UserInfoEdit = () => {
             id="date"
             label="Birthday"
             type="date"
-            defaultValue="1994-09-07"
+            defaultValue={birthday}
+            value={birthday}
             InputLabelProps={{
               shrink: true,
             }}
             margin="normal"
+            onChange={(e) => {
+              setBirthday(e.target.value);
+            }}
           />
 
           <Autocomplete
