@@ -7,7 +7,6 @@ import { Main } from "Components/Main";
 
 export const Routing = () => {
   const user = useUser();
-  console.log("🚀 ~ file: Routing.jsx ~ line 10 ~ Routing ~ user", user);
 
   const history = useHistory();
 
