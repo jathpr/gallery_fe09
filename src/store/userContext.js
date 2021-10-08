@@ -4,7 +4,7 @@ import { listenToUserChange } from "../firebase/auth";
 const userContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
 
   listenToUserChange(setUser);
 

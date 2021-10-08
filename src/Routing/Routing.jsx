@@ -7,11 +7,12 @@ import { Main } from "Components/Main";
 
 export const Routing = () => {
   const user = useUser();
+  console.log("🚀 ~ file: Routing.jsx ~ line 10 ~ Routing ~ user", user);
 
   const history = useHistory();
 
   useEffect(() => {
-    user && history.push("/");
+    user && user.uid && history.push("/");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
