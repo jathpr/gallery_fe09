@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { SignIn } from "Components/SignIn";
 import { useHistory } from "react-router";
-import { createUser, signIn } from "../auth";
-import { SignIn } from "./SignIn";
+import { signIn } from "../firebase/auth";
 
 export const Login = () => {
   const handleSubmit = (login, password) => {

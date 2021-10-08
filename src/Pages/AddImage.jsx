@@ -1,6 +1,7 @@
-import { uploadImage, downloadImage } from "../storage";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { uploadImage } from "../firebase/storage";
 import { useUser } from "../store/userContext";
+
 export const AddImage = () => {
   const [url, setUrl] = useState();
   const [value, setValue] = useState();

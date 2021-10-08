@@ -1,5 +1,6 @@
 import { createContext, useState, useContext } from "react";
-import { listenToUserChange } from "../auth";
+import { listenToUserChange } from "../firebase/auth";
+
 const userContext = createContext();
 
 export const UserProvider = ({ children }) => {

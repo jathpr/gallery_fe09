@@ -12,8 +12,7 @@ import {
 import { createTheme } from "@material-ui/core/styles";
 import { Autocomplete } from "@material-ui/lab";
 import { useForm } from "react-hook-form";
-import countries from "../countryList";
-import { readData, sendData } from "../firestore";
+import countries from "../helpers/countryList";
 
 const theme = createTheme();
 
@@ -29,8 +28,6 @@ export const UserInfoEdit = () => {
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-        <button onClick={sendData}>Send Data</button>
-        <button onClick={readData}>Read Data</button>
         <h1>Edit information</h1>
         <FormControl onSubmit={handleSubmit(onSubmit)} fullWidth>
           <FormLabel>Gender</FormLabel>

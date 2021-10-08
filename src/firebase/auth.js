@@ -30,11 +30,6 @@ export const signIn = (email, password) => {
 export const listenToUserChange = (userChange) =>
   onAuthStateChanged(auth, (user) => {
     userChange(user);
-    console.log(user);
-    if (user) {
-      const uid = user.uid;
-    } else {
-    }
   });
 
 export const signOut = () => fbSignOut(auth);

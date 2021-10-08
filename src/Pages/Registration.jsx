@@ -1,13 +1,8 @@
-import { useState } from "react";
 import { useHistory } from "react-router";
-import { createUser, signIn } from "../auth";
-import { useUser } from "../store/userContext";
-import { SignIn } from "./SignIn";
+import { SignIn } from "Components/SignIn";
+import { createUser } from "../firebase/auth";
 
 export const Registration = () => {
-  const user = useUser();
-  console.log(user);
-
   const getNewUser = async (login, password) => {
     createUser(login, password);
   };
