@@ -13,7 +13,7 @@ import { createTheme } from "@material-ui/core/styles";
 import { Autocomplete } from "@material-ui/lab";
 import { useForm } from "react-hook-form";
 import countries from "../helpers/countryList";
-import { readData, sendData } from "../firestore";
+import { readData, sendData } from "../firebase/firestore";
 import { useUser } from "../store/userContext";
 import { useEffect, useState } from "react";
 
@@ -30,21 +30,21 @@ export const UserInfoEdit = () => {
   const onSubmit = (data) => sendData(data, user.uid);
   const [name, setName] = useState("");
   const [birthday, setBirthday] = useState("");
+
   useEffect(() => {
-    const userData = readData(user.uid);
-    userData.then((response) => {
+    readData(user.uid).then((response) => {
+      if (!response) return;
       setName(response.name);
       setBirthday(response.birthday);
     });
   }, []);
 
-  console.log(name);
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <h1>Edit information</h1>
         <FormControl onSubmit={handleSubmit(onSubmit)} fullWidth>
-          <FormLabel>Gender</FormLabel>
+          {/* <FormLabel>Gender</FormLabel>
           <RadioGroup
             {...register("gender")}
             row
@@ -69,7 +69,7 @@ export const UserInfoEdit = () => {
               control={<Radio color="primary" />}
               label="Other"
             />
-          </RadioGroup>
+          </RadioGroup> */}
 
           <TextField
             {...register("name")}
@@ -99,7 +99,7 @@ export const UserInfoEdit = () => {
             }}
           />
 
-          <Autocomplete
+          {/* <Autocomplete
             {...countriesList}
             autoHighlight
             id="country"
@@ -129,7 +129,7 @@ export const UserInfoEdit = () => {
             rows={4}
             defaultValue=""
             margin="normal"
-          />
+          /> */}
 
           <Button
             type="submit"

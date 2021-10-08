@@ -1,10 +1,9 @@
 import {
   collection,
-  addDoc,
   getFirestore,
   setDoc,
   doc,
-  getDocs,
+  getDoc,
 } from "firebase/firestore";
 import { app } from "./firebase";
 
@@ -17,14 +16,12 @@ export const sendData = async (data, uid) => {
 };
 
 export const readData = async (uid) => {
-  const querySnapshot = await getDocs(collection(db, "users"));
-  let user;
-  querySnapshot.forEach((doc) => {
-    if (doc.id === uid) {
-      user = doc.data();
-    }
-  });
-  return user;
+  try {
+    const response = await getDoc(doc(db, "users", uid));
+    return await response.data();
+  } catch (error) {
+    console.log("🚀 ~ file: firestore.js ~ line 22 ~ readData ~ error", error);
+  }
 };
 
 /*export const sendData = async () => {
