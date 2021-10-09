@@ -1,23 +1,19 @@
-import { createContext, useState, useContext } from "react";
-import aceSpades from "../assets/aceSpades.png";
-import eightSpades from "../assets/eightSpades.png";
-import jackSpades from "../assets/jackSpades.png";
-import kingSpades from "../assets/kingSpades.png";
-import nineSpades from "../assets/nineSpades.png";
+import { downloadImages } from "../firebase/storage";
+import { createContext, useState, useContext, useEffect } from "react";
+import { useUser } from "./userContext";
 
 const imageContext = createContext();
 
 export const ImageProvider = ({ children }) => {
-  const [image, setImage] = useState([
-    aceSpades,
-    eightSpades,
-    jackSpades,
-    kingSpades,
-    nineSpades,
-  ]);
+  const user = useUser();
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    user && user.uid && downloadImages(user.uid).then((res) => setImages(res));
+  }, [user]);
 
   return (
-    <imageContext.Provider value={image}>{children}</imageContext.Provider>
+    <imageContext.Provider value={images}>{children}</imageContext.Provider>
   );
 };
 

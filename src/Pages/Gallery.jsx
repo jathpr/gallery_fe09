@@ -7,7 +7,7 @@ export const Gallery = () => {
     <ImageList cols={2}>
       {imagesArray.map((item, id) => (
         <ImageListItem key={id} cols={item.cols || 1}>
-          <img src={item} alt={item} />
+          <img src={item.url} alt={item.name} />
         </ImageListItem>
       ))}
     </ImageList>
